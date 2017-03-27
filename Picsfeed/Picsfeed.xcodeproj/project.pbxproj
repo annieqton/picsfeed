@@ -91,8 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				F2E8FE531E897FFC009DCC3F /* AppDelegate.swift */,
-				F2E8FE6D1E8984EF009DCC3F /* CloudKit.swift */,
 				F2E8FE6F1E898D4B009DCC3F /* HomeViewController.swift */,
+				F2E8FE6D1E8984EF009DCC3F /* CloudKit.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -362,6 +362,7 @@
 				F2E8FE641E897FFC009DCC3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
