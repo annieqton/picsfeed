@@ -30,16 +30,43 @@
                                     <outletCollection property="gestureRecognizers" destination="0mk-u1-VmZ" appends="YES" id="jhR-SP-Raa"/>
                                 </connections>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycg-dV-1vp">
+                                <rect key="frame" x="46.5" y="45" width="281" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="POST">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="postButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zPK-cL-AHI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqZ-Pd-Cde">
+                                <rect key="frame" x="46.5" y="783.5" width="281" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="FILTER">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="filterButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ccq-Xl-Ymb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Pgw-DG-ph1" firstAttribute="top" secondItem="ycg-dV-1vp" secondAttribute="bottom" constant="8" id="09g-YP-tm5"/>
                             <constraint firstItem="Pgw-DG-ph1" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="DUs-ID-FOE"/>
                             <constraint firstItem="Pgw-DG-ph1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GcM-zV-XKK"/>
+                            <constraint firstItem="jqZ-Pd-Cde" firstAttribute="top" secondItem="Pgw-DG-ph1" secondAttribute="bottom" constant="200" id="LEl-HV-YxT"/>
+                            <constraint firstItem="jqZ-Pd-Cde" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YYr-l3-47n"/>
+                            <constraint firstItem="ycg-dV-1vp" firstAttribute="width" secondItem="Pgw-DG-ph1" secondAttribute="width" id="buE-79-30T"/>
+                            <constraint firstItem="ycg-dV-1vp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dBe-Lh-Kss"/>
+                            <constraint firstItem="jqZ-Pd-Cde" firstAttribute="width" secondItem="Pgw-DG-ph1" secondAttribute="width" id="iJa-Mo-tDL"/>
                             <constraint firstItem="Pgw-DG-ph1" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="vxy-WS-KxQ"/>
                             <constraint firstItem="Pgw-DG-ph1" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.75" id="xv8-ag-h61"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="filterButtonTopConstraint" destination="LEl-HV-YxT" id="FKo-mf-L5y"/>
                         <outlet property="imageView" destination="Pgw-DG-ph1" id="YuA-YA-Bod"/>
                     </connections>
                 </viewController>
