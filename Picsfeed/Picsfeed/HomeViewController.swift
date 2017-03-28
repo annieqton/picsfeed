@@ -14,8 +14,17 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBOutlet weak var imageView: UIImageView!  //outlet is connected to storyboard
     
+    
+    @IBOutlet weak var filterButtonTopConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {  //because viewDidLoad existed in parent class, we have to mark with override
         super.viewDidLoad()
+        
+        filterButtonTopConstraint.constant = 8
+        
+        UIView.animate(withDuration: 0.4) {
+            self.view.layoutIfNeeded()
+        }
         
     }
     
@@ -39,12 +48,11 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     //Use the UIImagePickerController and its delegate to use the camera to set the image view's image.
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        print("Info: \(info)")
-
-        //UIImagePickerControllerOriginalImage
+        if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.imageView.image = originalImage
+            Filters.originalImage = originalImage
+        }
         
-        let chosenImage = info[UIImagePickerControllerEditedImage] as! UIImage  //self.imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        imageView.image = chosenImage
         self.dismiss(animated: true, completion: nil)
         
     }
@@ -55,6 +63,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         print("User Tapped Image!")
         self.presentActionSheet()
     }
+    
     
     @IBAction func postButtonPressed(_ sender: Any) {
         
@@ -71,6 +80,42 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
         
     }
+    
+    
+    @IBAction func filterButtonPressed(_ sender: Any) {
+        
+        guard let image = self.imageView.image else { return }
+        
+        let alertController = UIAlertController(title: "Filter", message: "Please selct a filter", preferredStyle: .alert)
+        
+        let blackAndWhiteAction = UIAlertAction(title: "Black & White", style: .default) { (action) in
+            Filters.filter(name: .blackAndWhite, image: image, completion: { (filteredImage) in
+                self.imageView.image = filteredImage
+            })
+        }
+        
+        let vintageAction = UIAlertAction(title: "Vintage", style: .default) { (action) in
+            Filters.filter(name: .vintage, image: image, completion: { (filteredImage) in
+                self.imageView.image = filteredImage
+            })
+        }
+        
+        let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) { (action) in
+            self.imageView.image = Filters.originalImage
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+        alertController.addAction(blackAndWhiteAction)
+        alertController.addAction(vintageAction)
+        alertController.addAction(resetAction)
+        alertController.addAction(cancelAction)
+        
+    }
+    
     
     func presentActionSheet() {
         
@@ -98,6 +143,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         self.present(actionSheetController, animated: true, completion: nil)
         
     }
+    
+    
     
 }
 
