@@ -10,6 +10,9 @@
 		F2AB40261E8AD0E100710B6B /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AB40251E8AD0E100710B6B /* Post.swift */; };
 		F2AB40281E8AD3A800710B6B /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AB40271E8AD3A800710B6B /* UIExtensions.swift */; };
 		F2AB402A1E8AE72000710B6B /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AB40291E8AE72000710B6B /* Filters.swift */; };
+		F2ADBF981E8C237300E1A597 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ADBF971E8C237300E1A597 /* GalleryViewController.swift */; };
+		F2ADBF9A1E8C277D00E1A597 /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ADBF991E8C277D00E1A597 /* GalleryCell.swift */; };
+		F2ADBF9C1E8C37B900E1A597 /* GalleryCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ADBF9B1E8C37B900E1A597 /* GalleryCollectionViewLayout.swift */; };
 		F2E8FE541E897FFC009DCC3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E8FE531E897FFC009DCC3F /* AppDelegate.swift */; };
 		F2E8FE591E897FFC009DCC3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2E8FE571E897FFC009DCC3F /* Main.storyboard */; };
 		F2E8FE5B1E897FFC009DCC3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2E8FE5A1E897FFC009DCC3F /* Assets.xcassets */; };
@@ -23,6 +26,9 @@
 		F2AB40251E8AD0E100710B6B /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F2AB40271E8AD3A800710B6B /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		F2AB40291E8AE72000710B6B /* Filters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
+		F2ADBF971E8C237300E1A597 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		F2ADBF991E8C277D00E1A597 /* GalleryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
+		F2ADBF9B1E8C37B900E1A597 /* GalleryCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewLayout.swift; sourceTree = "<group>"; };
 		F2E8FE501E897FFC009DCC3F /* Picsfeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picsfeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2E8FE531E897FFC009DCC3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2E8FE581E897FFC009DCC3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -96,6 +102,8 @@
 		F2E8FE6A1E898236009DCC3F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F2ADBF9B1E8C37B900E1A597 /* GalleryCollectionViewLayout.swift */,
+				F2ADBF971E8C237300E1A597 /* GalleryViewController.swift */,
 				F2E8FE531E897FFC009DCC3F /* AppDelegate.swift */,
 				F2E8FE6F1E898D4B009DCC3F /* HomeViewController.swift */,
 				F2E8FE6D1E8984EF009DCC3F /* CloudKit.swift */,
@@ -106,6 +114,7 @@
 		F2E8FE6B1E898245009DCC3F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F2ADBF991E8C277D00E1A597 /* GalleryCell.swift */,
 				F2E8FE571E897FFC009DCC3F /* Main.storyboard */,
 				F2E8FE5C1E897FFC009DCC3F /* LaunchScreen.storyboard */,
 			);
@@ -204,8 +213,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2E8FE6E1E8984EF009DCC3F /* CloudKit.swift in Sources */,
+				F2ADBF981E8C237300E1A597 /* GalleryViewController.swift in Sources */,
 				F2E8FE541E897FFC009DCC3F /* AppDelegate.swift in Sources */,
+				F2ADBF9C1E8C37B900E1A597 /* GalleryCollectionViewLayout.swift in Sources */,
 				F2E8FE701E898D4B009DCC3F /* HomeViewController.swift in Sources */,
+				F2ADBF9A1E8C277D00E1A597 /* GalleryCell.swift in Sources */,
 				F2AB402A1E8AE72000710B6B /* Filters.swift in Sources */,
 				F2AB40281E8AD3A800710B6B /* UIExtensions.swift in Sources */,
 				F2AB40261E8AD0E100710B6B /* Post.swift in Sources */,

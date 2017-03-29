@@ -31,8 +31,11 @@ extension UIImage {
         return documentsDirectory.appendingPathComponent("image")  //taking image and hand it to disk and then tell cloudkit to take it from disk
     
     }
+}
 
-
-
-
+extension UIResponder {
+    
+    static var identifier : String {
+        return String(describing: self)
+    }
 }
