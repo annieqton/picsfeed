@@ -27,6 +27,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         filterButtonTopConstraint.constant = 8
         postButtonBottomConstraint.constant = 8
@@ -96,7 +97,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         guard let image = self.imageView.image else { return }
         
-        let alertController = UIAlertController(title: "Filter", message: "Please selct a filter", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Filter", message: "Please select a filter", preferredStyle: .alert)
         
         let blackAndWhiteAction = UIAlertAction(title: "Black & White", style: .default) { (action) in
             Filters.filter(name: .blackAndWhite, image: image, completion: { (filteredImage) in
@@ -106,12 +107,14 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             })
         }
         
+        
         let vintageAction = UIAlertAction(title: "Vintage", style: .default) { (action) in
             Filters.filter(name: .vintage, image: image, completion: { (filteredImage) in
                 self.imageView.image = filteredImage
                 filteredImageCollection.append(filteredImage!)
             })
         }
+        
         
         let crystallizeAction = UIAlertAction(title: "Crystallize", style: .default) { (action) in
             Filters.filter(name: .crystallize, image: image, completion: { (filteredImage) in
@@ -120,12 +123,14 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             })
         }
         
+        
         let lineOverlayAction = UIAlertAction(title: "Line Overlay", style: .default) { (action) in
             Filters.filter(name: .lineOverlay, image: image, completion: { (filteredImage) in
                 self.imageView.image = filteredImage
                 filteredImageCollection.append(filteredImage!)
             })
         }
+        
         
         let comicEffectAction = UIAlertAction(title: "Comic Effect", style: .default) { (action) in
             Filters.filter(name: .comicEffect, image: image, completion: { (filteredImage) in
@@ -146,9 +151,11 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             }
         }
     
+        
         let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) { (action) in
             self.imageView.image = Filters.originalImage
         }
+        
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
