@@ -17,15 +17,23 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBOutlet weak var filterButtonTopConstraint: NSLayoutConstraint!
     
+    
+    @IBOutlet weak var postButtonBottomConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {  //because viewDidLoad existed in parent class, we have to mark with override
         super.viewDidLoad()
         
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
         filterButtonTopConstraint.constant = 8
+        postButtonBottomConstraint.constant = 8
         
         UIView.animate(withDuration: 0.4) {
             self.view.layoutIfNeeded()
         }
-        
     }
     
     
@@ -84,6 +92,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBAction func filterButtonPressed(_ sender: Any) {
         
+        var filteredImageCollection: [UIImage?] = []
+        
         guard let image = self.imageView.image else { return }
         
         let alertController = UIAlertController(title: "Filter", message: "Please selct a filter", preferredStyle: .alert)
@@ -91,15 +101,51 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let blackAndWhiteAction = UIAlertAction(title: "Black & White", style: .default) { (action) in
             Filters.filter(name: .blackAndWhite, image: image, completion: { (filteredImage) in
                 self.imageView.image = filteredImage
+//                print(filteredImage)
+                filteredImageCollection.append(filteredImage!)
             })
         }
         
         let vintageAction = UIAlertAction(title: "Vintage", style: .default) { (action) in
             Filters.filter(name: .vintage, image: image, completion: { (filteredImage) in
                 self.imageView.image = filteredImage
+                filteredImageCollection.append(filteredImage!)
             })
         }
         
+        let crystallizeAction = UIAlertAction(title: "Crystallize", style: .default) { (action) in
+            Filters.filter(name: .crystallize, image: image, completion: { (filteredImage) in
+                self.imageView.image = filteredImage
+                filteredImageCollection.append(filteredImage!)
+            })
+        }
+        
+        let lineOverlayAction = UIAlertAction(title: "Line Overlay", style: .default) { (action) in
+            Filters.filter(name: .lineOverlay, image: image, completion: { (filteredImage) in
+                self.imageView.image = filteredImage
+                filteredImageCollection.append(filteredImage!)
+            })
+        }
+        
+        let comicEffectAction = UIAlertAction(title: "Comic Effect", style: .default) { (action) in
+            Filters.filter(name: .comicEffect, image: image, completion: { (filteredImage) in
+                self.imageView.image = filteredImage
+                filteredImageCollection.append(filteredImage!)
+            })
+        }
+       
+        
+        let undoAction = UIAlertAction(title: "Undo Action", style: .destructive) { (action) in
+   
+            if filteredImageCollection.count <= 1 {
+                self.imageView.image = Filters.originalImage
+            } else {
+                filteredImageCollection.popLast()
+                self.imageView.image = filteredImageCollection.last!
+                print(filteredImageCollection)
+            }
+        }
+    
         let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) { (action) in
             self.imageView.image = Filters.originalImage
         }
@@ -107,14 +153,19 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         
-        self.present(alertController, animated: true, completion: nil)
-        
         alertController.addAction(blackAndWhiteAction)
         alertController.addAction(vintageAction)
+        alertController.addAction(crystallizeAction)
+        alertController.addAction(lineOverlayAction)
+        alertController.addAction(comicEffectAction)
         alertController.addAction(resetAction)
+        alertController.addAction(undoAction)
         alertController.addAction(cancelAction)
         
+        self.present(alertController, animated: true, completion: nil)
+        
     }
+    
     
     
     func presentActionSheet() {

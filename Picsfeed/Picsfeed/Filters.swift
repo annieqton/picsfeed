@@ -12,7 +12,11 @@ import UIKit
 enum FilterName : String {
     case vintage = "CIPhotoEffectTransfer"
     case blackAndWhite = "CIPhotoEffectMono"
+    case crystallize = "CICrystallize"
+    case lineOverlay = "CILineOverlay"
+    case comicEffect = "CIComicEffect"
 }
+
 
 typealias FilterCompletion = (UIImage?) -> ()
 
@@ -50,8 +54,6 @@ class Filters {
                     completion(nil)
                 }
             }
-            
-            
             
         }
         
