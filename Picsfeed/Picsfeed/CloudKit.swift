@@ -6,11 +6,13 @@
 //  Copyright © 2017 Annie Ton-Nu. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CloudKit
 
 
-typealias PostCompletion = (Bool) -> ()
+
+typealias SuccessCompletion = (Bool) -> ()
+typealias PostsCompletion = ([Post]?) -> ()  // returns an optional array of post
 
 class CloudKit {
     
@@ -22,7 +24,7 @@ class CloudKit {
         return container.privateCloudDatabase
     }
     
-    func save(post: Post, completion: @escaping PostCompletion) {  //instance method of CloudKit. to access this method from anywhere, use CloudKit.Shared.save
+    func save(post: Post, completion: @escaping SuccessCompletion) {  //instance method of CloudKit. to access this method from anywhere, use CloudKit.Shared.save
         do {
             if let record = try Post.recordFor(post: post) {
                 
@@ -46,9 +48,47 @@ class CloudKit {
         } catch {
             print(error)
         }
+    }
+    
+        
+        func getPosts(completion: @escaping PostsCompletion) {
+            
+            let postQuery = CKQuery(recordType: "Post", predicate: NSPredicate(value: true))
+            
+            self.privateDatabase.perform(postQuery, inZoneWith: nil) { (records, error) in
+                if let error = error {
+                    OperationQueue.main.addOperation {
+                        completion(nil)
+                    }
+                }
+                
+                if let records = records {
+                    var posts = [Post]()
+                    
+                    for record in records {
+                        if let asset = record["image"] as? CKAsset {
+                            
+                            let path = asset.fileURL.path
+                            
+                            if let image = UIImage(contentsOfFile: path) {
+                                let newPost = Post(image: image)
+                                posts.append(newPost)
+                            }
+                        }
+                    }
+                    
+                    OperationQueue.main.addOperation {
+                        completion(posts)
+                    }
+                    
+                }
+                
+            }
+        }
+        
         
     }
     
     
     
-}
+
