@@ -18,6 +18,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var filterButtonTopConstraint: NSLayoutConstraint!
     
     
@@ -65,6 +67,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.imageView.image = originalImage
             Filters.originalImage = originalImage
+            self.collectionView.reloadData()
         }
         
         self.dismiss(animated: true, completion: nil)
@@ -98,12 +101,12 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBAction func filterButtonPressed(_ sender: Any) {
         
-        var filteredImageCollection: [UIImage?] = []
+//        var filteredImageCollection: [UIImage?] = []
         
         guard let image = self.imageView.image else { return }
         
-        let alertController = UIAlertController(title: "Filter", message: "Please select a filter", preferredStyle: .alert)
-        
+//        let alertController = UIAlertController(title: "Filter", message: "Please select a filter", preferredStyle: .alert)
+//        
         
         //        let undoAction = UIAlertAction(title: "Undo Action", style: .destructive) { (action) in
         //
@@ -117,63 +120,63 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         //        }
         //
         
-        let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) { (action) in
-            self.imageView.image = Filters.originalImage
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        let blackAndWhiteAction = UIAlertAction(title: "Black & White", style: .default) { (action) in
-            Filters.filter(name: .blackAndWhite, image: image, completion: { (filteredImage) in
-                self.imageView.image = filteredImage
-                filteredImageCollection.append(filteredImage!)
-            })
-        }
-        
-        
-        let vintageAction = UIAlertAction(title: "Vintage", style: .default) { (action) in
-            Filters.filter(name: .vintage, image: image, completion: { (filteredImage) in
-                self.imageView.image = filteredImage
-                filteredImageCollection.append(filteredImage!)
-            })
-        }
-        
-        
-        let crystallizeAction = UIAlertAction(title: "Crystallize", style: .default) { (action) in
-            Filters.filter(name: .crystallize, image: image, completion: { (filteredImage) in
-                self.imageView.image = filteredImage
-                filteredImageCollection.append(filteredImage!)
-            })
-        }
-        
-        
-        let lineOverlayAction = UIAlertAction(title: "Line Overlay", style: .default) { (action) in
-            Filters.filter(name: .lineOverlay, image: image, completion: { (filteredImage) in
-                self.imageView.image = filteredImage
-                filteredImageCollection.append(filteredImage!)
-            })
-        }
-        
-        
-        let comicEffectAction = UIAlertAction(title: "Comic Effect", style: .default) { (action) in
-            Filters.filter(name: .comicEffect, image: image, completion: { (filteredImage) in
-                self.imageView.image = filteredImage
-                filteredImageCollection.append(filteredImage!)
-            })
-        }
+//        let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) { (action) in
+//            self.imageView.image = Filters.originalImage
+//        }
+//        
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//        
+//        let blackAndWhiteAction = UIAlertAction(title: "Black & White", style: .default) { (action) in
+//            Filters.filter(name: .blackAndWhite, image: image, completion: { (filteredImage) in
+//                self.imageView.image = filteredImage
+//                filteredImageCollection.append(filteredImage!)
+//            })
+//        }
+//        
+//        
+//        let vintageAction = UIAlertAction(title: "Vintage", style: .default) { (action) in
+//            Filters.filter(name: .vintage, image: image, completion: { (filteredImage) in
+//                self.imageView.image = filteredImage
+//                filteredImageCollection.append(filteredImage!)
+//            })
+//        }
+//        
+//        
+//        let crystallizeAction = UIAlertAction(title: "Crystallize", style: .default) { (action) in
+//            Filters.filter(name: .crystallize, image: image, completion: { (filteredImage) in
+//                self.imageView.image = filteredImage
+//                filteredImageCollection.append(filteredImage!)
+//            })
+//        }
+//        
+//        
+//        let lineOverlayAction = UIAlertAction(title: "Line Overlay", style: .default) { (action) in
+//            Filters.filter(name: .lineOverlay, image: image, completion: { (filteredImage) in
+//                self.imageView.image = filteredImage
+//                filteredImageCollection.append(filteredImage!)
+//            })
+//        }
         
         
+//        let comicEffectAction = UIAlertAction(title: "Comic Effect", style: .default) { (action) in
+//            Filters.filter(name: .comicEffect, image: image, completion: { (filteredImage) in
+//                self.imageView.image = filteredImage
+//                filteredImageCollection.append(filteredImage!)
+//            })
+//        }
+//        
         
-        alertController.addAction(blackAndWhiteAction)
-        alertController.addAction(vintageAction)
-        alertController.addAction(crystallizeAction)
-        alertController.addAction(lineOverlayAction)
-        alertController.addAction(comicEffectAction)
-        alertController.addAction(resetAction)
+        
+//        alertController.addAction(blackAndWhiteAction)
+//        alertController.addAction(vintageAction)
+//        alertController.addAction(crystallizeAction)
+//        alertController.addAction(lineOverlayAction)
+//        alertController.addAction(comicEffectAction)
+//        alertController.addAction(resetAction)
         //        alertController.addAction(undoAction)
-        alertController.addAction(cancelAction)
+//        alertController.addAction(cancelAction)
         
-        self.present(alertController, animated: true, completion: nil)
+//        self.present(alertController, animated: true, completion: nil)
         
     }
     
