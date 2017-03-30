@@ -102,7 +102,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         let undoAction = UIAlertAction(title: "Undo Action", style: .destructive) { (action) in
             
-            if filteredImageCollection.count <= 1 {
+            if filteredImageCollection.count <= 2 {
                 self.imageView.image = Filters.originalImage
             } else {
                 filteredImageCollection.popLast()
