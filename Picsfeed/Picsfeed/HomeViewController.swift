@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Social
+
 
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -113,7 +115,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBAction func filterButtonPressed(_ sender: Any) {
         
-//        var filteredImageCollection: [UIImage?] = []
+        //        var filteredImageCollection: [UIImage?] = []
         
         guard let image = self.imageView.image else { return }
         
@@ -123,11 +125,11 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             self.view.layoutIfNeeded()
         }
         
-// -------------------------------------------------------
-// NOTE: Old codes is being replaced since we're add constraint height = 150 in storyboard and add in array of filterNames from enum
+        // -------------------------------------------------------
+        // NOTE: Old codes is being replaced since we're add constraint height = 150 in storyboard and add in array of filterNames from enum
         
-//        let alertController = UIAlertController(title: "Filter", message: "Please select a filter", preferredStyle: .alert)
-//        
+        //        let alertController = UIAlertController(title: "Filter", message: "Please select a filter", preferredStyle: .alert)
+        //
         
         //        let undoAction = UIAlertAction(title: "Undo Action", style: .destructive) { (action) in
         //
@@ -141,66 +143,80 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         //        }
         //
         
-//        let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) { (action) in
-//            self.imageView.image = Filters.originalImage
-//        }
-//        
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//        
-//        let blackAndWhiteAction = UIAlertAction(title: "Black & White", style: .default) { (action) in
-//            Filters.filter(name: .blackAndWhite, image: image, completion: { (filteredImage) in
-//                self.imageView.image = filteredImage
-//                filteredImageCollection.append(filteredImage!)
-//            })
-//        }
-//        
-//        
-//        let vintageAction = UIAlertAction(title: "Vintage", style: .default) { (action) in
-//            Filters.filter(name: .vintage, image: image, completion: { (filteredImage) in
-//                self.imageView.image = filteredImage
-//                filteredImageCollection.append(filteredImage!)
-//            })
-//        }
-//        
-//        
-//        let crystallizeAction = UIAlertAction(title: "Crystallize", style: .default) { (action) in
-//            Filters.filter(name: .crystallize, image: image, completion: { (filteredImage) in
-//                self.imageView.image = filteredImage
-//                filteredImageCollection.append(filteredImage!)
-//            })
-//        }
-//        
-//        
-//        let lineOverlayAction = UIAlertAction(title: "Line Overlay", style: .default) { (action) in
-//            Filters.filter(name: .lineOverlay, image: image, completion: { (filteredImage) in
-//                self.imageView.image = filteredImage
-//                filteredImageCollection.append(filteredImage!)
-//            })
-//        }
+        //        let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) { (action) in
+        //            self.imageView.image = Filters.originalImage
+        //        }
+        //
+        //        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        //
+        //        let blackAndWhiteAction = UIAlertAction(title: "Black & White", style: .default) { (action) in
+        //            Filters.filter(name: .blackAndWhite, image: image, completion: { (filteredImage) in
+        //                self.imageView.image = filteredImage
+        //                filteredImageCollection.append(filteredImage!)
+        //            })
+        //        }
+        //
+        //
+        //        let vintageAction = UIAlertAction(title: "Vintage", style: .default) { (action) in
+        //            Filters.filter(name: .vintage, image: image, completion: { (filteredImage) in
+        //                self.imageView.image = filteredImage
+        //                filteredImageCollection.append(filteredImage!)
+        //            })
+        //        }
+        //
+        //
+        //        let crystallizeAction = UIAlertAction(title: "Crystallize", style: .default) { (action) in
+        //            Filters.filter(name: .crystallize, image: image, completion: { (filteredImage) in
+        //                self.imageView.image = filteredImage
+        //                filteredImageCollection.append(filteredImage!)
+        //            })
+        //        }
+        //
+        //
+        //        let lineOverlayAction = UIAlertAction(title: "Line Overlay", style: .default) { (action) in
+        //            Filters.filter(name: .lineOverlay, image: image, completion: { (filteredImage) in
+        //                self.imageView.image = filteredImage
+        //                filteredImageCollection.append(filteredImage!)
+        //            })
+        //        }
         
         
-//        let comicEffectAction = UIAlertAction(title: "Comic Effect", style: .default) { (action) in
-//            Filters.filter(name: .comicEffect, image: image, completion: { (filteredImage) in
-//                self.imageView.image = filteredImage
-//                filteredImageCollection.append(filteredImage!)
-//            })
-//        }
-//        
+        //        let comicEffectAction = UIAlertAction(title: "Comic Effect", style: .default) { (action) in
+        //            Filters.filter(name: .comicEffect, image: image, completion: { (filteredImage) in
+        //                self.imageView.image = filteredImage
+        //                filteredImageCollection.append(filteredImage!)
+        //            })
+        //        }
+        //
         
         
-//        alertController.addAction(blackAndWhiteAction)
-//        alertController.addAction(vintageAction)
-//        alertController.addAction(crystallizeAction)
-//        alertController.addAction(lineOverlayAction)
-//        alertController.addAction(comicEffectAction)
-//        alertController.addAction(resetAction)
+        //        alertController.addAction(blackAndWhiteAction)
+        //        alertController.addAction(vintageAction)
+        //        alertController.addAction(crystallizeAction)
+        //        alertController.addAction(lineOverlayAction)
+        //        alertController.addAction(comicEffectAction)
+        //        alertController.addAction(resetAction)
         //        alertController.addAction(undoAction)
-//        alertController.addAction(cancelAction)
+        //        alertController.addAction(cancelAction)
         
-//        self.present(alertController, animated: true, completion: nil)
+        //        self.present(alertController, animated: true, completion: nil)
         
     }
     
+    
+    
+    @IBAction func userLongPressed(_ sender: Any) {
+        
+        if(SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter)){
+            
+            guard let composeController = SLComposeViewController(forServiceType: SLServiceTypeTwitter) else { return }
+            
+            composeController.add(self.imageView.image)
+            
+            self.present(composeController, animated: true, completion: nil)
+            
+        }
+    }
     
     
     func presentActionSheet() {
