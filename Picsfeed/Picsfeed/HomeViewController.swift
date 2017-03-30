@@ -30,7 +30,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     override func viewDidLoad() {  //because viewDidLoad existed in parent class, we have to mark with override
         super.viewDidLoad()
         self.collectionView.dataSource = self
-        
+        self.collectionView.delegate = self
         setupGalleryDelegate()
     }
     
@@ -125,8 +125,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             self.view.layoutIfNeeded()
         }
         
-        // -------------------------------------------------------
-        // NOTE: Old codes is being replaced since we're add constraint height = 150 in storyboard and add in array of filterNames from enum
+        // -----------------------------------------------------------------------------------------------
+        // NOTE: Old codes being replaced since we've added constraint height = 150 in storyboard and added in array of filterNames from enum
         
         //        let alertController = UIAlertController(title: "Filter", message: "Please select a filter", preferredStyle: .alert)
         //
@@ -202,7 +202,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         //        self.present(alertController, animated: true, completion: nil)
         
     }
-    
+    //---------------------------------------------------------------------------------
     
     
     @IBAction func userLongPressed(_ sender: Any) {
@@ -258,9 +258,13 @@ extension HomeViewController : UICollectionViewDataSource {
         
         guard let originalImage = Filters.originalImage else { return filterCell }
         
-        guard let resizedImage = originalImage.resize(size: CGSize(width: 75, height: 75)) else { return filterCell }
+//        filterCell.originalImage = originalImage
+        
+        guard let resizedImage = originalImage.resize(size: CGSize(width: 65, height: 65)) else { return filterCell }
         
         let filterName = self.filterNames[indexPath.row]
+
+        
         
         Filters.filter(name: filterName, image: resizedImage) { (filteredImage) in
             filterCell.imageView.image = filteredImage
@@ -269,10 +273,26 @@ extension HomeViewController : UICollectionViewDataSource {
         return filterCell
     }
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filterNames.count
     }
+    
+ 
 }
+
+
+extension HomeViewController : UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if let selectedCell = collectionView.cellForItem(at: indexPath) as? FilterCell {
+            self.imageView.image = selectedCell.imageView.image
+        }
+        
+    }
+}
+
 
 extension HomeViewController : GalleryViewControllerDelegate {
     
@@ -283,6 +303,4 @@ extension HomeViewController : GalleryViewControllerDelegate {
     }
     
 }
-
-
 
