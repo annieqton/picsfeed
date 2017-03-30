@@ -56,7 +56,7 @@ class CloudKit {
             let postQuery = CKQuery(recordType: "Post", predicate: NSPredicate(value: true))
             
             self.privateDatabase.perform(postQuery, inZoneWith: nil) { (records, error) in
-                if let error = error {
+                if error != nil {
                     OperationQueue.main.addOperation {
                         completion(nil)
                     }
@@ -71,7 +71,7 @@ class CloudKit {
                             let path = asset.fileURL.path
                             
                             if let image = UIImage(contentsOfFile: path) {
-                                let newPost = Post(image: image)
+                                let newPost = Post(image: image, date: record.creationDate!)
                                 posts.append(newPost)
                             }
                         }
