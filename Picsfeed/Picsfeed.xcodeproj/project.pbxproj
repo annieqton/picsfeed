@@ -20,6 +20,7 @@
 		F2E8FE681E898027009DCC3F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E8FE671E898027009DCC3F /* CloudKit.framework */; };
 		F2E8FE6E1E8984EF009DCC3F /* CloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E8FE6D1E8984EF009DCC3F /* CloudKit.swift */; };
 		F2E8FE701E898D4B009DCC3F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E8FE6F1E898D4B009DCC3F /* HomeViewController.swift */; };
+		F2F86C481E8D759200EB7CD9 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F86C471E8D759200EB7CD9 /* FilterCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		F2E8FE671E898027009DCC3F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		F2E8FE6D1E8984EF009DCC3F /* CloudKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKit.swift; sourceTree = "<group>"; };
 		F2E8FE6F1E898D4B009DCC3F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F2F86C471E8D759200EB7CD9 /* FilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			children = (
 				F2ADBF991E8C277D00E1A597 /* GalleryCell.swift */,
 				F2E8FE571E897FFC009DCC3F /* Main.storyboard */,
+				F2F86C471E8D759200EB7CD9 /* FilterCell.swift */,
 				F2E8FE5C1E897FFC009DCC3F /* LaunchScreen.storyboard */,
 			);
 			name = Views;
@@ -221,6 +224,7 @@
 				F2AB402A1E8AE72000710B6B /* Filters.swift in Sources */,
 				F2AB40281E8AD3A800710B6B /* UIExtensions.swift in Sources */,
 				F2AB40261E8AD0E100710B6B /* Post.swift in Sources */,
+				F2F86C481E8D759200EB7CD9 /* FilterCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,7 +23,7 @@ class Filters {
     
     static let shared = Filters()
 
-    static var originalImage = UIImage()  // var as an instance living on a class
+    static var originalImage : UIImage?  // var as an instance living on a class
     
     
     //refactor the GPU Context using a singleton

@@ -28,6 +28,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="0mk-u1-VmZ" appends="YES" id="jhR-SP-Raa"/>
+                                    <outletCollection property="gestureRecognizers" destination="fk7-dQ-AbG" appends="YES" id="v7X-qN-TU9"/>
                                 </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycg-dV-1vp">
@@ -52,17 +53,56 @@
                                     <action selector="filterButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ccq-Xl-Ymb"/>
                                 </connections>
                             </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nVH-G1-h4e">
+                                <rect key="frame" x="0.0" y="583" width="375" height="0.0"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="KUO-GM-RLk"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IR3-Nq-L4g">
+                                    <size key="itemSize" width="125" height="124"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FilterCell" id="EyJ-Bm-ZrZ" customClass="FilterCell" customModule="Picsfeed" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mUx-0I-4BH">
+                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="124"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="mUx-0I-4BH" secondAttribute="trailing" id="9cX-or-3rR"/>
+                                            <constraint firstItem="mUx-0I-4BH" firstAttribute="top" secondItem="EyJ-Bm-ZrZ" secondAttribute="top" id="Lyr-Ts-H2r"/>
+                                            <constraint firstAttribute="bottom" secondItem="mUx-0I-4BH" secondAttribute="bottom" id="kbS-Ik-UBi"/>
+                                            <constraint firstItem="mUx-0I-4BH" firstAttribute="leading" secondItem="EyJ-Bm-ZrZ" secondAttribute="leading" id="xS3-Bp-75c"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="mUx-0I-4BH" id="iKV-a4-S9X"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Pgw-DG-ph1" firstAttribute="top" secondItem="ycg-dV-1vp" secondAttribute="bottom" constant="200" id="09g-YP-tm5"/>
+                            <constraint firstItem="nVH-G1-h4e" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="291-jN-lUs"/>
+                            <constraint firstAttribute="trailing" secondItem="nVH-G1-h4e" secondAttribute="trailing" id="8gR-O4-hE3"/>
                             <constraint firstItem="Pgw-DG-ph1" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="DUs-ID-FOE"/>
                             <constraint firstItem="Pgw-DG-ph1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GcM-zV-XKK"/>
                             <constraint firstItem="jqZ-Pd-Cde" firstAttribute="top" secondItem="Pgw-DG-ph1" secondAttribute="bottom" constant="200" id="LEl-HV-YxT"/>
                             <constraint firstItem="jqZ-Pd-Cde" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YYr-l3-47n"/>
                             <constraint firstItem="ycg-dV-1vp" firstAttribute="width" secondItem="Pgw-DG-ph1" secondAttribute="width" id="buE-79-30T"/>
+                            <constraint firstItem="nVH-G1-h4e" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cBV-0N-Lel"/>
                             <constraint firstItem="ycg-dV-1vp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dBe-Lh-Kss"/>
                             <constraint firstItem="jqZ-Pd-Cde" firstAttribute="width" secondItem="Pgw-DG-ph1" secondAttribute="width" id="iJa-Mo-tDL"/>
+                            <constraint firstItem="nVH-G1-h4e" firstAttribute="bottom" secondItem="Pgw-DG-ph1" secondAttribute="bottom" id="vE9-nQ-6w2"/>
                             <constraint firstItem="Pgw-DG-ph1" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="vxy-WS-KxQ"/>
                             <constraint firstItem="Pgw-DG-ph1" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.75" id="xv8-ag-h61"/>
                         </constraints>
@@ -71,6 +111,8 @@
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-20"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="collectionView" destination="nVH-G1-h4e" id="alu-LM-QXF"/>
+                        <outlet property="collectionViewHeightConstraint" destination="KUO-GM-RLk" id="18a-BE-Sa4"/>
                         <outlet property="filterButtonTopConstraint" destination="LEl-HV-YxT" id="FKo-mf-L5y"/>
                         <outlet property="imageView" destination="Pgw-DG-ph1" id="YuA-YA-Bod"/>
                         <outlet property="postButtonBottomConstraint" destination="09g-YP-tm5" id="7kF-CI-DJW"/>
@@ -82,6 +124,11 @@
                         <action selector="imageTapped:" destination="BYZ-38-t0r" id="tSu-J6-tcd"/>
                     </connections>
                 </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="fk7-dQ-AbG">
+                    <connections>
+                        <action selector="userLongPressed:" destination="BYZ-38-t0r" id="8tg-wU-yDy"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="960.79999999999995" y="34.632683658170919"/>
         </scene>
@@ -100,6 +147,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0Ws-2q-bq9">
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5T8-wL-cbb">
                                     <size key="itemSize" width="89" height="90"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -139,6 +187,9 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="mki-fL-i8E" appends="YES" id="Mb1-vV-7ON"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -157,6 +208,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H62-4c-i0L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="mki-fL-i8E">
+                    <connections>
+                        <action selector="userPinched:" destination="zZe-91-x7F" id="2xO-xk-FD2"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="960.79999999999995" y="804.64767616191909"/>
         </scene>

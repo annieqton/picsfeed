@@ -7,13 +7,20 @@
 //
 
 import UIKit
+import Social
+
 
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    let imagePicker = UIImagePickerController()  //imagecPicker property is set to UIImagePickerController instance
+    let filterNames = [FilterName.vintage, FilterName.blackAndWhite, FilterName.comicEffect, FilterName.crystallize, FilterName.lineOverlay]
+    
+    let imagePicker = UIImagePickerController()  //imagePicker property is set to UIImagePickerController instance
     
     @IBOutlet weak var imageView: UIImageView!  //outlet is connected to storyboard
     
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var filterButtonTopConstraint: NSLayoutConstraint!
     
@@ -22,7 +29,21 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     override func viewDidLoad() {  //because viewDidLoad existed in parent class, we have to mark with override
         super.viewDidLoad()
+        self.collectionView.dataSource = self
         
+        setupGalleryDelegate()
+    }
+    
+    func setupGalleryDelegate() {
+        if let tabBarController = self.tabBarController {
+            
+            guard let viewControllers = tabBarController.viewControllers else { return }
+            
+            guard let galleryController = viewControllers[1] as? GalleryViewController else { return }
+            
+            galleryController.delegate = self
+            
+        }
     }
     
     
@@ -60,6 +81,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.imageView.image = originalImage
             Filters.originalImage = originalImage
+            self.collectionView.reloadData()
         }
         
         self.dismiss(animated: true, completion: nil)
@@ -93,85 +115,108 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBAction func filterButtonPressed(_ sender: Any) {
         
-        var filteredImageCollection: [UIImage?] = []
+        //        var filteredImageCollection: [UIImage?] = []
         
         guard let image = self.imageView.image else { return }
         
-        let alertController = UIAlertController(title: "Filter", message: "Please select a filter", preferredStyle: .alert)
+        self.collectionViewHeightConstraint.constant = 150
         
-        
-        let undoAction = UIAlertAction(title: "Undo Action", style: .destructive) { (action) in
-            
-            if filteredImageCollection.count <= 2 {
-                self.imageView.image = Filters.originalImage
-            } else {
-                filteredImageCollection.popLast()
-                self.imageView.image = filteredImageCollection.last!
-                print(filteredImageCollection)
-            }
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
         }
         
+        // -------------------------------------------------------
+        // NOTE: Old codes is being replaced since we're add constraint height = 150 in storyboard and add in array of filterNames from enum
         
-        let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) { (action) in
-            self.imageView.image = Filters.originalImage
-        }
+        //        let alertController = UIAlertController(title: "Filter", message: "Please select a filter", preferredStyle: .alert)
+        //
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        //        let undoAction = UIAlertAction(title: "Undo Action", style: .destructive) { (action) in
+        //
+        //            if filteredImageCollection.count <= 2 {
+        //                self.imageView.image = Filters.originalImage
+        //            } else {
+        //                filteredImageCollection.popLast()
+        //                self.imageView.image = filteredImageCollection.last!
+        //                print(filteredImageCollection)
+        //            }
+        //        }
+        //
         
-        let blackAndWhiteAction = UIAlertAction(title: "Black & White", style: .default) { (action) in
-            Filters.filter(name: .blackAndWhite, image: image, completion: { (filteredImage) in
-                self.imageView.image = filteredImage
-                filteredImageCollection.append(filteredImage!)
-            })
-        }
+        //        let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) { (action) in
+        //            self.imageView.image = Filters.originalImage
+        //        }
+        //
+        //        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        //
+        //        let blackAndWhiteAction = UIAlertAction(title: "Black & White", style: .default) { (action) in
+        //            Filters.filter(name: .blackAndWhite, image: image, completion: { (filteredImage) in
+        //                self.imageView.image = filteredImage
+        //                filteredImageCollection.append(filteredImage!)
+        //            })
+        //        }
+        //
+        //
+        //        let vintageAction = UIAlertAction(title: "Vintage", style: .default) { (action) in
+        //            Filters.filter(name: .vintage, image: image, completion: { (filteredImage) in
+        //                self.imageView.image = filteredImage
+        //                filteredImageCollection.append(filteredImage!)
+        //            })
+        //        }
+        //
+        //
+        //        let crystallizeAction = UIAlertAction(title: "Crystallize", style: .default) { (action) in
+        //            Filters.filter(name: .crystallize, image: image, completion: { (filteredImage) in
+        //                self.imageView.image = filteredImage
+        //                filteredImageCollection.append(filteredImage!)
+        //            })
+        //        }
+        //
+        //
+        //        let lineOverlayAction = UIAlertAction(title: "Line Overlay", style: .default) { (action) in
+        //            Filters.filter(name: .lineOverlay, image: image, completion: { (filteredImage) in
+        //                self.imageView.image = filteredImage
+        //                filteredImageCollection.append(filteredImage!)
+        //            })
+        //        }
         
         
-        let vintageAction = UIAlertAction(title: "Vintage", style: .default) { (action) in
-            Filters.filter(name: .vintage, image: image, completion: { (filteredImage) in
-                self.imageView.image = filteredImage
-                filteredImageCollection.append(filteredImage!)
-            })
-        }
+        //        let comicEffectAction = UIAlertAction(title: "Comic Effect", style: .default) { (action) in
+        //            Filters.filter(name: .comicEffect, image: image, completion: { (filteredImage) in
+        //                self.imageView.image = filteredImage
+        //                filteredImageCollection.append(filteredImage!)
+        //            })
+        //        }
+        //
         
         
-        let crystallizeAction = UIAlertAction(title: "Crystallize", style: .default) { (action) in
-            Filters.filter(name: .crystallize, image: image, completion: { (filteredImage) in
-                self.imageView.image = filteredImage
-                filteredImageCollection.append(filteredImage!)
-            })
-        }
+        //        alertController.addAction(blackAndWhiteAction)
+        //        alertController.addAction(vintageAction)
+        //        alertController.addAction(crystallizeAction)
+        //        alertController.addAction(lineOverlayAction)
+        //        alertController.addAction(comicEffectAction)
+        //        alertController.addAction(resetAction)
+        //        alertController.addAction(undoAction)
+        //        alertController.addAction(cancelAction)
         
-        
-        let lineOverlayAction = UIAlertAction(title: "Line Overlay", style: .default) { (action) in
-            Filters.filter(name: .lineOverlay, image: image, completion: { (filteredImage) in
-                self.imageView.image = filteredImage
-                filteredImageCollection.append(filteredImage!)
-            })
-        }
-        
-        
-        let comicEffectAction = UIAlertAction(title: "Comic Effect", style: .default) { (action) in
-            Filters.filter(name: .comicEffect, image: image, completion: { (filteredImage) in
-                self.imageView.image = filteredImage
-                filteredImageCollection.append(filteredImage!)
-            })
-        }
-       
-        
-        
-        alertController.addAction(blackAndWhiteAction)
-        alertController.addAction(vintageAction)
-        alertController.addAction(crystallizeAction)
-        alertController.addAction(lineOverlayAction)
-        alertController.addAction(comicEffectAction)
-        alertController.addAction(resetAction)
-        alertController.addAction(undoAction)
-        alertController.addAction(cancelAction)
-        
-        self.present(alertController, animated: true, completion: nil)
+        //        self.present(alertController, animated: true, completion: nil)
         
     }
     
+    
+    
+    @IBAction func userLongPressed(_ sender: Any) {
+        
+        if(SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter)){
+            
+            guard let composeController = SLComposeViewController(forServiceType: SLServiceTypeTwitter) else { return }
+            
+            composeController.add(self.imageView.image)
+            
+            self.present(composeController, animated: true, completion: nil)
+            
+        }
+    }
     
     
     func presentActionSheet() {
@@ -202,7 +247,42 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     
+}
+
+//MARK: UICollectionView DataSource
+extension HomeViewController : UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let filterCell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterCell.identifier, for: indexPath) as! FilterCell
+        
+        guard let originalImage = Filters.originalImage else { return filterCell }
+        
+        guard let resizedImage = originalImage.resize(size: CGSize(width: 75, height: 75)) else { return filterCell }
+        
+        let filterName = self.filterNames[indexPath.row]
+        
+        Filters.filter(name: filterName, image: resizedImage) { (filteredImage) in
+            filterCell.imageView.image = filteredImage
+        }
+        
+        return filterCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return filterNames.count
+    }
+}
+
+extension HomeViewController : GalleryViewControllerDelegate {
+    
+    func galleryController(didSelect image: UIImage) {
+        self.imageView.image = image
+        
+        self.tabBarController?.selectedIndex = 0
+    }
     
 }
+
 
 
