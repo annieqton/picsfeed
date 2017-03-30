@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol GalleryViewControllerDelegate : class {
+    func galleryController(didSelect image: UIImage)
+}
+
+
 class GalleryViewController: UIViewController {
+    
+    weak var delegate : GalleryViewControllerDelegate?
 
     @IBOutlet weak var colletionView: UICollectionView!
     
@@ -22,6 +29,7 @@ class GalleryViewController: UIViewController {
         super.viewDidLoad()
         
         self.colletionView.dataSource = self
+        colletionView.delegate = self
         self.colletionView.collectionViewLayout = GalleryCollectionViewLayout(columns: 3)
 
     }
@@ -44,7 +52,8 @@ class GalleryViewController: UIViewController {
 
 
 //MARK: UICollectionViewDataSource Extension
-extension GalleryViewController : UICollectionViewDataSource {
+extension GalleryViewController : UICollectionViewDataSource, UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = colletionView.dequeueReusableCell(withReuseIdentifier: GalleryCell.identifier, for: indexPath) as! GalleryCell
@@ -56,6 +65,16 @@ extension GalleryViewController : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return allPosts.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let delegate = self.delegate else { return }
+        
+        let selectedPost = self.allPosts[indexPath.row]
+        
+        delegate.galleryController(didSelect: selectedPost.image)
+        
+        
     }
     
 }

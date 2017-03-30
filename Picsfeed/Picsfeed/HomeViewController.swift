@@ -27,9 +27,21 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     override func viewDidLoad() {  //because viewDidLoad existed in parent class, we have to mark with override
         super.viewDidLoad()
-        
         self.collectionView.dataSource = self
         
+        setupGalleryDelegate()
+    }
+    
+    func setupGalleryDelegate() {
+        if let tabBarController = self.tabBarController {
+            
+            guard let viewControllers = tabBarController.viewControllers else { return }
+            
+            guard let galleryController = viewControllers[1] as? GalleryViewController else { return }
+            
+            galleryController.delegate = self
+            
+        }
     }
     
     
@@ -104,6 +116,15 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 //        var filteredImageCollection: [UIImage?] = []
         
         guard let image = self.imageView.image else { return }
+        
+        self.collectionViewHeightConstraint.constant = 150
+        
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
+        
+// -------------------------------------------------------
+// NOTE: Old codes is being replaced since we're add constraint height = 150 in storyboard and add in array of filterNames from enum
         
 //        let alertController = UIAlertController(title: "Filter", message: "Please select a filter", preferredStyle: .alert)
 //        
@@ -235,6 +256,16 @@ extension HomeViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filterNames.count
     }
+}
+
+extension HomeViewController : GalleryViewControllerDelegate {
+    
+    func galleryController(didSelect image: UIImage) {
+        self.imageView.image = image
+        
+        self.tabBarController?.selectedIndex = 0
+    }
+    
 }
 
 
