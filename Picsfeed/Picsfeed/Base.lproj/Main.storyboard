@@ -18,12 +18,12 @@
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pgw-DG-ph1">
-                                <rect key="frame" x="47" y="100" width="281" height="467"/>
+                                <rect key="frame" x="47" y="83.5" width="281" height="500"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -31,7 +31,7 @@
                                 </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycg-dV-1vp">
-                                <rect key="frame" x="47" y="-133" width="281" height="33"/>
+                                <rect key="frame" x="47" y="-149.5" width="281" height="33"/>
                                 <color key="backgroundColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <state key="normal" title="POST">
@@ -42,7 +42,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqZ-Pd-Cde">
-                                <rect key="frame" x="47" y="767" width="281" height="33"/>
+                                <rect key="frame" x="47" y="783.5" width="281" height="33"/>
                                 <color key="backgroundColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <state key="normal" title="FILTER">
@@ -64,7 +64,7 @@
                             <constraint firstItem="ycg-dV-1vp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dBe-Lh-Kss"/>
                             <constraint firstItem="jqZ-Pd-Cde" firstAttribute="width" secondItem="Pgw-DG-ph1" secondAttribute="width" id="iJa-Mo-tDL"/>
                             <constraint firstItem="Pgw-DG-ph1" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="vxy-WS-KxQ"/>
-                            <constraint firstItem="Pgw-DG-ph1" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="xv8-ag-h61"/>
+                            <constraint firstItem="Pgw-DG-ph1" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.75" id="xv8-ag-h61"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Post" id="4q2-gF-lna">
@@ -115,17 +115,26 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eAw-vr-ffP">
-                                                    <rect key="frame" x="0.0" y="0.0" width="89" height="90"/>
+                                                    <rect key="frame" x="10" y="10" width="69" height="70"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sx-kd-9Q6">
+                                                    <rect key="frame" x="32" y="79" width="24" height="11"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="9"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="eAw-vr-ffP" secondAttribute="trailing" id="Hyi-oY-IG1"/>
-                                            <constraint firstItem="eAw-vr-ffP" firstAttribute="top" secondItem="y6E-HT-kbp" secondAttribute="top" id="Q02-ct-lNf"/>
-                                            <constraint firstItem="eAw-vr-ffP" firstAttribute="leading" secondItem="y6E-HT-kbp" secondAttribute="leading" id="c5i-2t-XYA"/>
-                                            <constraint firstAttribute="bottom" secondItem="eAw-vr-ffP" secondAttribute="bottom" id="rBK-ai-82A"/>
+                                            <constraint firstAttribute="trailing" secondItem="eAw-vr-ffP" secondAttribute="trailing" constant="10" id="Hyi-oY-IG1"/>
+                                            <constraint firstItem="eAw-vr-ffP" firstAttribute="top" secondItem="y6E-HT-kbp" secondAttribute="top" constant="10" id="Q02-ct-lNf"/>
+                                            <constraint firstItem="eAw-vr-ffP" firstAttribute="leading" secondItem="y6E-HT-kbp" secondAttribute="leading" constant="10" id="c5i-2t-XYA"/>
+                                            <constraint firstItem="6sx-kd-9Q6" firstAttribute="centerX" secondItem="y6E-HT-kbp" secondAttribute="centerX" id="iQh-c1-M3Q"/>
+                                            <constraint firstAttribute="bottom" secondItem="eAw-vr-ffP" secondAttribute="bottom" constant="10" id="rBK-ai-82A"/>
+                                            <constraint firstAttribute="bottom" secondItem="6sx-kd-9Q6" secondAttribute="bottom" id="uMH-Gs-mzx"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="dateLabel" destination="6sx-kd-9Q6" id="4Ou-Sd-jyf"/>
                                             <outlet property="imageView" destination="eAw-vr-ffP" id="rBM-5N-xvw"/>
                                         </connections>
                                     </collectionViewCell>
