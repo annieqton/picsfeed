@@ -10,10 +10,13 @@ import UIKit
 
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    let imagePicker = UIImagePickerController()  //imagecPicker property is set to UIImagePickerController instance
+    let filterNames = [FilterName.vintage, FilterName.blackAndWhite, FilterName.comicEffect, FilterName.crystallize, FilterName.lineOverlay]
+    
+    let imagePicker = UIImagePickerController()  //imagePicker property is set to UIImagePickerController instance
     
     @IBOutlet weak var imageView: UIImageView!  //outlet is connected to storyboard
     
+    @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var filterButtonTopConstraint: NSLayoutConstraint!
     
@@ -22,6 +25,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     override func viewDidLoad() {  //because viewDidLoad existed in parent class, we have to mark with override
         super.viewDidLoad()
+        
+        self.collectionView.dataSource = self
         
     }
     
@@ -100,17 +105,17 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let alertController = UIAlertController(title: "Filter", message: "Please select a filter", preferredStyle: .alert)
         
         
-        let undoAction = UIAlertAction(title: "Undo Action", style: .destructive) { (action) in
-            
-            if filteredImageCollection.count <= 2 {
-                self.imageView.image = Filters.originalImage
-            } else {
-                filteredImageCollection.popLast()
-                self.imageView.image = filteredImageCollection.last!
-                print(filteredImageCollection)
-            }
-        }
-        
+        //        let undoAction = UIAlertAction(title: "Undo Action", style: .destructive) { (action) in
+        //
+        //            if filteredImageCollection.count <= 2 {
+        //                self.imageView.image = Filters.originalImage
+        //            } else {
+        //                filteredImageCollection.popLast()
+        //                self.imageView.image = filteredImageCollection.last!
+        //                print(filteredImageCollection)
+        //            }
+        //        }
+        //
         
         let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) { (action) in
             self.imageView.image = Filters.originalImage
@@ -156,7 +161,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 filteredImageCollection.append(filteredImage!)
             })
         }
-       
+        
         
         
         alertController.addAction(blackAndWhiteAction)
@@ -165,7 +170,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         alertController.addAction(lineOverlayAction)
         alertController.addAction(comicEffectAction)
         alertController.addAction(resetAction)
-        alertController.addAction(undoAction)
+        //        alertController.addAction(undoAction)
         alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true, completion: nil)
@@ -202,7 +207,32 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     
-    
 }
+
+//MARK: UICollectionView DataSource
+extension HomeViewController : UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let filterCell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterCell.identifier, for: indexPath) as! FilterCell
+        
+        guard let originalImage = Filters.originalImage else { return filterCell }
+        
+        guard let resizedImage = originalImage.resize(size: CGSize(width: 75, height: 75)) else { return filterCell }
+        
+        let filterName = self.filterNames[indexPath.row]
+        
+        Filters.filter(name: filterName, image: resizedImage) { (filteredImage) in
+            filterCell.imageView.image = filteredImage
+        }
+        
+        return filterCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return filterNames.count
+    }
+}
+
 
 
