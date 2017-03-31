@@ -88,7 +88,6 @@
                                             <constraint firstItem="mUx-0I-4BH" firstAttribute="leading" secondItem="EyJ-Bm-ZrZ" secondAttribute="leading" id="xS3-Bp-75c"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="filterLabel" destination="RgT-j5-faG" id="tsQ-MU-5oq"/>
                                             <outlet property="imageView" destination="mUx-0I-4BH" id="iKV-a4-S9X"/>
                                         </connections>
                                     </collectionViewCell>

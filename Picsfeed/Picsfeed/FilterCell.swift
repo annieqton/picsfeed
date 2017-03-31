@@ -12,24 +12,24 @@ class FilterCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     
-    @IBOutlet weak var filterLabel: UILabel!
+//    @IBOutlet weak var filterLabel: UILabel!
 
     
     override func prepareForReuse() {
         super.prepareForReuse()
         self.imageView.image = nil
-        self.filterLabel.text = nil
+//        self.filterLabel.text = nil
         
     }
     
-    func makeFilterLabel(name: String) -> String {
-        
-        for index in filterNames {
-         var index = 0
-            filterLabel.text = filterNames[index]
-        }
-        
-    }
+//    func makeFilterLabel(name: String) -> String {
+//        
+//        for index in filterNames {
+//         var index = 0
+//            filterLabel.text = filterNames[index]
+//        }
+//        
+//    }
     
     
 }
