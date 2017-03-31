@@ -10,14 +10,17 @@ import UIKit
 
 class FilterCell: UICollectionViewCell {
     
-    var originalImage : UIImage?
-    
     @IBOutlet weak var imageView: UIImageView!
+    
+    @IBOutlet weak var filterCellType: UILabel!
     
     override func prepareForReuse() {
         super.prepareForReuse()
         self.imageView.image = nil
+        self.filterCellType.text = nil
+        
     }
+    
     
     
 }

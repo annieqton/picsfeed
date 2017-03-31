@@ -80,11 +80,8 @@ class GalleryViewController: UIViewController {
 extension GalleryViewController : UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = colletionView.dequeueReusableCell(withReuseIdentifier: GalleryCell.identifier, for: indexPath) as! GalleryCell
-        
         cell.post = self.allPosts[indexPath.row]  //cell.post = currentPost
-        
         return cell
     }
     
@@ -94,9 +91,7 @@ extension GalleryViewController : UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let delegate = self.delegate else { return }
-        
         let selectedPost = self.allPosts[indexPath.row]
-        
         delegate.galleryController(didSelect: selectedPost.image)
         
         
