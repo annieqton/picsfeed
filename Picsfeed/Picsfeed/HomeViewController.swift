@@ -10,7 +10,7 @@ import UIKit
 import Social
 
 
-class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class HomeViewController: UIViewController, UINavigationControllerDelegate {
     
     let filterNames = [FilterName.vintage, FilterName.blackAndWhite, FilterName.comicEffect, FilterName.crystallize, FilterName.lineOverlay]
     
@@ -24,13 +24,12 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBOutlet weak var filterButtonTopConstraint: NSLayoutConstraint!
     
-    
     @IBOutlet weak var postButtonBottomConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {  //because viewDidLoad existed in parent class, we have to mark with override
         super.viewDidLoad()
         self.collectionView.dataSource = self
-        
+        self.collectionView.delegate = self
         setupGalleryDelegate()
     }
     
@@ -55,7 +54,11 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         UIView.animate(withDuration: 0.4) {
             self.view.layoutIfNeeded()
+    
+        self.collectionView.reloadData()
+        
         }
+    
     }
     
     
@@ -69,24 +72,6 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {  // imagePickerControllerDidCancel is a optional delegate
-        self.dismiss(animated: true, completion: nil)  //if the user is presented with an image picker and hit the cancel button, we dissmiss the image picker, not the HomeViewController.  self is type scope, referring to HomeviewController and it would still work when we take self.  off.
-        //this is the HomeViewVontroller telling the UIImagePickerController to dismiss
-    }
-    
-    
-    //Use the UIImagePickerController and its delegate to use the camera to set the image view's image.
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            self.imageView.image = originalImage
-            Filters.originalImage = originalImage
-            self.collectionView.reloadData()
-        }
-        
-        self.dismiss(animated: true, completion: nil)
-        
-    }
     
     
     
@@ -119,14 +104,20 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         guard let image = self.imageView.image else { return }
         
-        self.collectionViewHeightConstraint.constant = 150
+    
+        
+        if (self.collectionViewHeightConstraint.constant == 150) {
+            self.collectionViewHeightConstraint.constant = 0
+        } else {
+            self.collectionViewHeightConstraint.constant = 150
+        }
         
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
         
-        // -------------------------------------------------------
-        // NOTE: Old codes is being replaced since we're add constraint height = 150 in storyboard and add in array of filterNames from enum
+        // -----------------------------------------------------------------------------------------------
+        // NOTE: Old codes being replaced since we've added constraint height = 150 in storyboard and added in array of filterNames from enum
         
         //        let alertController = UIAlertController(title: "Filter", message: "Please select a filter", preferredStyle: .alert)
         //
@@ -202,7 +193,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         //        self.present(alertController, animated: true, completion: nil)
         
     }
-    
+    //---------------------------------------------------------------------------------
     
     
     @IBAction func userLongPressed(_ sender: Any) {
@@ -258,10 +249,10 @@ extension HomeViewController : UICollectionViewDataSource {
         
         guard let originalImage = Filters.originalImage else { return filterCell }
         
-        guard let resizedImage = originalImage.resize(size: CGSize(width: 75, height: 75)) else { return filterCell }
+        guard let resizedImage = originalImage.resize(size: CGSize(width: 65, height: 65)) else { return filterCell }
         
         let filterName = self.filterNames[indexPath.row]
-        
+
         Filters.filter(name: filterName, image: resizedImage) { (filteredImage) in
             filterCell.imageView.image = filteredImage
         }
@@ -269,20 +260,56 @@ extension HomeViewController : UICollectionViewDataSource {
         return filterCell
     }
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filterNames.count
     }
+    
 }
+
+
+extension HomeViewController : UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard let originalImage = Filters.originalImage else { fatalError("Fail to get original image to filter") }
+        let filterName = self.filterNames[indexPath.row]
+        Filters.filter(name: filterName, image: originalImage) { (filteredImage) in
+            
+            self.imageView.image = filteredImage
+        }
+    }
+}
+
 
 extension HomeViewController : GalleryViewControllerDelegate {
     
     func galleryController(didSelect image: UIImage) {
         self.imageView.image = image
-        
+        Filters.originalImage = image
         self.tabBarController?.selectedIndex = 0
     }
     
 }
 
 
+extension HomeViewController :  UIImagePickerControllerDelegate {
+    
+func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    self.dismiss(animated: true, completion: nil)  }
 
+
+//Use the UIImagePickerController and its delegate to use the camera to set the image view's image.
+func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    
+    if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        self.imageView.image = originalImage
+        Filters.originalImage = originalImage
+        self.collectionView.reloadData()
+    }
+    
+    self.dismiss(animated: true, completion: nil)
+    
+}
+
+}
