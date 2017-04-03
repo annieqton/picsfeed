@@ -13,6 +13,7 @@ import Social
 class HomeViewController: UIViewController, UINavigationControllerDelegate {
     
     let filterNames = [FilterName.vintage, FilterName.blackAndWhite, FilterName.comicEffect, FilterName.crystallize, FilterName.lineOverlay]
+    let filterLabel = ["Vintage", "Black and White", "Comic Effect", "Crystallize", "Line Overlay"]
     
     let imagePicker = UIImagePickerController()  //imagePicker property is set to UIImagePickerController instance
     
@@ -249,14 +250,19 @@ extension HomeViewController : UICollectionViewDataSource {
         
         guard let originalImage = Filters.originalImage else { return filterCell }
         
-        guard let resizedImage = originalImage.resize(size: CGSize(width: 65, height: 65)) else { return filterCell }
+        guard let resizedImage = originalImage.resize(size: CGSize(width: 105, height: 105)) else { return filterCell }
         
         let filterName = self.filterNames[indexPath.row]
-
+        
         Filters.filter(name: filterName, image: resizedImage) { (filteredImage) in
             filterCell.imageView.image = filteredImage
+            print(self.filterNames.description)
+            filterCell.filterLabel.text = self.filterLabel[indexPath.row]
+            
+//            filterCell.filterLabel.text = Filters.sharedFilters.filtersNameArray[indexPath.row]
+            
         }
-        
+  
         return filterCell
     }
     
