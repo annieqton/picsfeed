@@ -20,6 +20,9 @@
 		F2E8FE681E898027009DCC3F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E8FE671E898027009DCC3F /* CloudKit.framework */; };
 		F2E8FE6E1E8984EF009DCC3F /* CloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E8FE6D1E8984EF009DCC3F /* CloudKit.swift */; };
 		F2E8FE701E898D4B009DCC3F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E8FE6F1E898D4B009DCC3F /* HomeViewController.swift */; };
+		F2F3E6E61E921CD1009D78DB /* app_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F3E6E31E921CD1009D78DB /* app_background@2x.png */; };
+		F2F3E6E71E921CD1009D78DB /* app_background@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F3E6E41E921CD1009D78DB /* app_background@3x.png */; };
+		F2F3E6E81E921CD1009D78DB /* app-background.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F3E6E51E921CD1009D78DB /* app-background.png */; };
 		F2F86C481E8D759200EB7CD9 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F86C471E8D759200EB7CD9 /* FilterCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +43,9 @@
 		F2E8FE671E898027009DCC3F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		F2E8FE6D1E8984EF009DCC3F /* CloudKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKit.swift; sourceTree = "<group>"; };
 		F2E8FE6F1E898D4B009DCC3F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F2F3E6E31E921CD1009D78DB /* app_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_background@2x.png"; path = "../../../app_background@2x.png"; sourceTree = "<group>"; };
+		F2F3E6E41E921CD1009D78DB /* app_background@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_background@3x.png"; path = "../../../app_background@3x.png"; sourceTree = "<group>"; };
+		F2F3E6E51E921CD1009D78DB /* app-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-background.png"; path = "../../../app-background.png"; sourceTree = "<group>"; };
 		F2F86C471E8D759200EB7CD9 /* FilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +102,9 @@
 			children = (
 				F2E8FE651E898020009DCC3F /* Picsfeed.entitlements */,
 				F2E8FE5A1E897FFC009DCC3F /* Assets.xcassets */,
+				F2F3E6E31E921CD1009D78DB /* app_background@2x.png */,
+				F2F3E6E41E921CD1009D78DB /* app_background@3x.png */,
+				F2F3E6E51E921CD1009D78DB /* app-background.png */,
 				F2E8FE5F1E897FFC009DCC3F /* Info.plist */,
 			);
 			name = Supporting;
@@ -202,9 +211,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2F3E6E71E921CD1009D78DB /* app_background@3x.png in Resources */,
 				F2E8FE5E1E897FFC009DCC3F /* LaunchScreen.storyboard in Resources */,
 				F2E8FE5B1E897FFC009DCC3F /* Assets.xcassets in Resources */,
+				F2F3E6E61E921CD1009D78DB /* app_background@2x.png in Resources */,
 				F2E8FE591E897FFC009DCC3F /* Main.storyboard in Resources */,
+				F2F3E6E81E921CD1009D78DB /* app-background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
