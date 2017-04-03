@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home-->
+        <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Picsfeed" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,14 +22,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paul_skorupskas_59950.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="1ZW-hb-jND">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paul_skorupskas_59950" translatesAutoresizingMaskIntoConstraints="NO" id="1ZW-hb-jND">
                                 <rect key="frame" x="0.0" y="49" width="375" height="569"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cii-kA-4ZW">
-                                <rect key="frame" x="166" y="323" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cii-kA-4ZW">
+                                <rect key="frame" x="108.5" y="291.5" width="159.5" height="85.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Picstagram">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="25" name="Zapfino"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="shadowColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="...see the world through your view" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JU5-fN-nrV">
+                                <rect key="frame" x="120.5" y="0.0" width="135" height="10"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pgw-DG-ph1">
@@ -81,11 +94,9 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mUx-0I-4BH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mUx-0I-4BH"/>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RgT-j5-faG">
-                                                    <rect key="frame" x="0.0" y="985.5" width="1000" height="14.5"/>
+                                                    <rect key="frame" x="0.0" y="-14.5" width="0.0" height="14.5"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -121,21 +132,25 @@
                             <constraint firstAttribute="trailing" secondItem="1ZW-hb-jND" secondAttribute="trailing" id="CX8-GH-Hdi"/>
                             <constraint firstItem="Pgw-DG-ph1" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="DUs-ID-FOE"/>
                             <constraint firstItem="Pgw-DG-ph1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GcM-zV-XKK"/>
+                            <constraint firstItem="cii-kA-4ZW" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="JTT-qD-cfi"/>
                             <constraint firstItem="jqZ-Pd-Cde" firstAttribute="top" secondItem="Pgw-DG-ph1" secondAttribute="bottom" constant="200" id="LEl-HV-YxT"/>
+                            <constraint firstItem="cii-kA-4ZW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WxH-HU-6ic"/>
                             <constraint firstItem="jqZ-Pd-Cde" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YYr-l3-47n"/>
                             <constraint firstItem="ycg-dV-1vp" firstAttribute="width" secondItem="Pgw-DG-ph1" secondAttribute="width" id="buE-79-30T"/>
                             <constraint firstItem="nVH-G1-h4e" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cBV-0N-Lel"/>
                             <constraint firstItem="ycg-dV-1vp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dBe-Lh-Kss"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1ZW-hb-jND" secondAttribute="bottom" id="eo3-ep-of3"/>
                             <constraint firstItem="jqZ-Pd-Cde" firstAttribute="width" secondItem="Pgw-DG-ph1" secondAttribute="width" id="iJa-Mo-tDL"/>
+                            <constraint firstItem="JU5-fN-nrV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="380" id="kr3-gA-lCs"/>
                             <constraint firstItem="1ZW-hb-jND" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="rRI-Eg-PK0"/>
                             <constraint firstItem="1ZW-hb-jND" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="tua-Nw-xso"/>
                             <constraint firstItem="nVH-G1-h4e" firstAttribute="bottom" secondItem="Pgw-DG-ph1" secondAttribute="bottom" id="vE9-nQ-6w2"/>
                             <constraint firstItem="Pgw-DG-ph1" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="vxy-WS-KxQ"/>
                             <constraint firstItem="Pgw-DG-ph1" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.75" id="xv8-ag-h61"/>
+                            <constraint firstItem="JU5-fN-nrV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="zIN-XH-OGB"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="4q2-gF-lna">
+                    <tabBarItem key="tabBarItem" image="home3" selectedImage="home3" id="4q2-gF-lna">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-20"/>
                     </tabBarItem>
                     <connections>
@@ -160,7 +175,7 @@
             </objects>
             <point key="canvasLocation" x="960.79999999999995" y="34.632683658170919"/>
         </scene>
-        <!--Gallery-->
+        <!--Gallery View Controller-->
         <scene sceneID="xDv-x2-cCS">
             <objects>
                 <viewController id="zZe-91-x7F" customClass="GalleryViewController" customModule="Picsfeed" customModuleProvider="target" sceneMemberID="viewController">
@@ -228,7 +243,7 @@
                             <constraint firstItem="0Ws-2q-bq9" firstAttribute="top" secondItem="vHV-Fl-Svh" secondAttribute="bottom" id="sUa-nL-cPS"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Gallery" id="5GH-RI-AXR">
+                    <tabBarItem key="tabBarItem" title="" image="images" selectedImage="images" id="5GH-RI-AXR">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-20"/>
                     </tabBarItem>
                     <connections>
@@ -265,6 +280,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="paul_skorupskas_59950.jpg" width="1588" height="1058"/>
+        <image name="home3" width="10" height="10"/>
+        <image name="images" width="12" height="10"/>
+        <image name="paul_skorupskas_59950" width="1588" height="1058"/>
     </resources>
 </document>
